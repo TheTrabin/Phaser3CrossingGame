@@ -1,0 +1,153 @@
+Set up example of GDD [x]
+
+Install Phaser 3 [x]
+Phaser 3.23.0 "Ginro"
+
+npm install Phaser@3.23.0
+
+created gameScene
+
+Created Config information, Canvas size and gameScene
+
+
+Create the new game based on Config
+
+Pre-Loading Assets
+Draw (create scene)
+
+background
+    reset Origin 0,0
+
+gameScene.create = function() {
+    //create bg sprite
+    let bg = this.add.sprite(0, 0, 'background');
+
+    //change origin to the top left corner
+    bg.setOrigin(0,0);
+};
+
+// bg.setPosition(640/2, 360/2); //half distance
+
+    // let gameW = this.sys.game.config.width; //from sys
+    // let gameH = this.sys.game.config.height; //from sys
+
+    // console.log(gameW, gameH); // pull from sys.config that was set up
+
+    // console.log(bg); // will state sprite
+    // console.log(this); // instructs scene
+
+
+Add player
+    includes sprites
+
+    player.depth = 1;
+    console.log(player);
+    player.x = 10;
+
+    console.log(this.player);
+
+//Create player
+    this.player = this.add.sprite(
+        40, 
+        180, 
+        "player"
+        );
+    
+        this.player.setScale(0.5);
+
+
+
+//create Enemy 1
+    this.enemy1 = this.add.sprite(150,180,'enemy'); 
+    //create Enemy 2
+    this.enemy2 = this.add.sprite(300,180,'enemy');
+    //create enemy 3
+    this.enemy3 = this.add.sprite(450,180,'enemy');
+
+    //pilf, er, Flip
+    this.enemy1.flipX = true;
+    this.enemy2.flipX = true;
+    this.enemy3.flipX = true;
+
+
+
+
+
+
+Scale
+
+// enemy1.scaleX = 2;
+// enemy1.scaleY = 2;
+
+// enemy2.displayWidth = 300;
+
+Flip
+// enemy1.flipY = true;
+
+
+
+
+
+
+
+//rotation
+    // enemy1.angle = 45;
+    // enemy1.setAngle(45);
+    // enemy1.setOrigin(0,0);
+    // enemy1.rotation = Math.PI / 4;
+    // enemy1.setRotation(Math.PI / 4);
+
+
+
+
+    Under update function
+    gameScene.update = function() {
+
+     // this.enemy1.x += 1; //movement on x axis, right
+    this.enemy1.angle += 1; //Rotate
+    //growth?
+    if(this.player.scaleX < 2) {
+    this.player.scaleX += 0.01;
+    this.player.scaleY += 0.01;
+
+
+    restart method?
+    this.scene.manager.bootScene(this);
+
+
+    // enemy Movement
+this.enemy.y += this.enemySpeed;
+
+//check we haven't oassed min y
+let conditionUp = this.enemySpeed < 0 && this.enemy.y <= this.enemyMinY;
+let conditionDown = this.enemySpeed > 0 && this.enemy.y >= this.enemyMaxY;
+if(this.enemySpeed < 0 && this.enemy.y <= this.enemyMinY) {
+    this.enemySpeed *= -1;
+};
+
+///check we haven't max y
+if(this.enemySpeed > 0 && this.enemy.y >= this.enemyMaxY) {
+    this.enemySpeed *= -1;
+
+//group
+this.enemies = this.add.group();
+
+
+
+//Add Existing to group
+    this.enemies.add(this.enemy);
+//Scale for each in a group
+    Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.4, -0.4);
+
+
+    
+
+//Singleton Enemy
+    this.enemy = this.add.sprite(
+        120,
+        this.sys.game.config.height / 2,
+        'enemy'
+    );
+    this.enemy.flipX = true;
+
+    this.enemies.add(this.enemy);
