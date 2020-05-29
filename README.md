@@ -42,37 +42,55 @@ Section 1
                     Enemy
                     Treasure
 
-(-------------------------------------------------------------------------------------------------------------------)
 
-Game Design Documents(GDD)
+Update:
+* - Adding Keyboard controls. 4 directional.
+* - Log Wins.
+* - Make wins into currency.
+* - Set up Shop for other items.
+    * - Run key - Running shoes
+    * - Reduce enemyMaxSpeed.
+* - Log and save all changes.
+* - Export log changes.
+* - Setup Database for online cloud saving.
+* - Game Expansions
+    * - Make entire RPG.
+        * - Include occasional turn based battles.
+        * - Team Members
+        * - Multiple Levels and goals.
+        * - Stats
+        * - Items
+        * - Monsters
+        * - More puzzles.
+            * - Dodge - Crossing Road Game
+            * - Item Hunt - Spanish Learning Game
+            * - Pet System - Virtual Pet Game
+            * - Platformer - Mario-style Platformer
+        * - Exploration and camera - Topdown RPG
+        * - Class system
+            * - For main outside character
+                * -Include mainfield skills
+            * - Team Classes and TB-skills.
+* - Story Line?
+* - Theme
+    * - Image style.
+        * - Era
+            * - Middle, Pre, Modern, Future
+    * - Images.
+        * -Player
+            * - Overworld sprite
+            * - In Combat Sprites (will they be the same?)
+        * - Enemy Sprites
+            * - Overworld and Combat
+    * - Music.
+        * - Environmental
+            * - Overworld
+            * - Puzzled
 
-Short documents to describe a game concept and requirements
+        * - Location
+            * - Pub
+                * - Job Board
+        * - Combat
+        * - Victory Chime/Music
 
-Used by any number of people (1 or many)
-
-includes
-    Concept
-        Main Idea of the game and proposed goals, either completion, side events or goals.
-        Characters
-        Enemies
-        General Descriptors
-
-    Mechanics/UI
-        What actions are allowed/not allowed.
-        What purpose the actors take.
-        How will it be presented visually.
-
-    Platforms
-        What will the game be available for?
-            Desktop? [ ]
-            Mobile? [ ]
-            Console? [ ]
-            Browser-based? [ ]
-
-    Assets
-        What imagery or other document types necessary for the completion of game being crafted?
-        What tools are necessary to play and/or create/publish game?
-        Music?
-        Images?
-        Style?
-        Sprites needed?
+* - Menu System?

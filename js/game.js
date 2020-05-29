@@ -5,6 +5,7 @@ let gameScene = new Phaser.Scene('Game');
 gameScene.init = function() {
     //player Speed
     this.playerSpeed = 3.5;
+    this.maxSpeed = 3.5;
 
     // enemy speed
     this.enemyMinSpeed = 1;
@@ -14,8 +15,21 @@ gameScene.init = function() {
     this.enemyMinY = 80;
     this.enemyMaxY = 280;
 
+    this.playerMinY = 80;
+    this.playerMaxY = 280;
+    this.playerMinX = 80;
+    this.playerMaxX = 280;
+
+
     //Not terming
     this.isTerminating = false;
+
+    this.isRightKeyPressed = false;
+    this.isLeftKeyPressed = false;
+    this.isDownKeyPressed = false;
+    this.isUpKeyPressed = false;
+
+    
 }
 
 
@@ -40,6 +54,8 @@ gameScene.preload = function() {
         'goal',
         'assets/treasure.png'
         );
+    
+    
 };
 
 
@@ -57,7 +73,8 @@ gameScene.create = function() {
         40, 
         this.sys.game.config.height / 2, 
         "player"
-        ).setScale(0.5);
+        ).setScale(0.5)
+        
     
     //create goal
     this.goal = this.add.sprite(
@@ -100,10 +117,27 @@ gameScene.update = function() {
 //don't execute if we are terming
 if(this.isTerminating) return;
 
-//check for active input
+// check for active input
 if(this.input.activePointer.isDown) {
     //player walks
-    this.player.x += this.playerSpeed;
+    this.player.x += this.maxSpeed;
+};
+
+if(this.input.keyboard.addKey('D').isDown) {
+    //player walks
+    this.player.x += this.maxSpeed;
+};
+if(this.input.keyboard.addKey('A').isDown) {
+    //player walks
+    this.player.x -= this.maxSpeed;
+};
+if(this.input.keyboard.addKey('w').isDown) {
+    //player walks
+    this.player.y -= this.maxSpeed;
+};
+if(this.input.keyboard.addKey('S').isDown) {
+    //player walks
+    this.player.y += this.maxSpeed;
 };
 
 //treasure overlap check
@@ -117,6 +151,7 @@ if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, treasureRect)) {
     return this.gameOver();
 };
 
+
 let enemies = this.enemies.getChildren();
 let numEnemies = enemies.length;
 
@@ -124,6 +159,12 @@ for(let i= 0; i < numEnemies; i++) {
 // enemy Movement
 enemies[i].y += enemies[i].speed;
 
+// if(this.player.y = this.playerMinY) {
+//     this.playerSpeed = 0;
+// };
+    // this.playerMaxY = 280;
+    // this.playerMinX = 80;
+    // this.playerMaxX = 280;
 //check we haven't passed min/max y
 let conditionUp = enemies[i].speed < 0 && enemies[i].y <= this.enemyMinY;
 let conditionDown = enemies[i].speed > 0 && enemies[i].y >= this.enemyMaxY;
@@ -144,29 +185,30 @@ if(Phaser.Geom.Intersects.RectangleToRectangle(playerRect, enemyRect)) {
 };
 };
 
+
 gameScene.gameOver = function() {
 
-//initiated Game Over Sequence
-this.isTerminating = true;
-
-//shake shake shake!
-this.cameras.main.shake(500);
-//listen for finish
-this.cameras.main.on('camerashakecomplete',
- function(camera, effect){
- //fadeout
- this.cameras.main.fade(500);
-}, this)
-
-this.cameras.main.on('camerafadeoutcomplete',
-function(camera, effect){
-//restart the Scene
-this.scene.restart();
-}, this);
-
-
-};
-
+    //initiated Game Over Sequence
+    this.isTerminating = true;
+    
+    //shake shake shake!
+    this.cameras.main.shake(500);
+    //listen for finish
+    this.cameras.main.on('camerashakecomplete',
+     function(camera, effect){
+     //fadeout
+     this.cameras.main.fade(500);
+    }, this);
+    
+    this.cameras.main.on('camerafadeoutcomplete',
+    function(camera, effect){
+    //restart the Scene
+    this.scene.restart();
+    }, this);
+    
+    
+    };
+    // Phaser.Physics.Arcade.Body#setCollideWorldBounds = true;
 
 
 //set the congfiguration of the game
@@ -175,6 +217,7 @@ let config = {
     width: 640,
     height: 360,
     scene: gameScene
+    
 };
 
 
