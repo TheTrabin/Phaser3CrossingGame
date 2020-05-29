@@ -1,0 +1,34 @@
+(-------------------------------------------------------------------------------------------------------------------)
+
+Game Design Documents(GDD)
+
+Short documents to describe a game concept and requirements
+
+Used by any number of people (1 or many)
+
+includes
+    Concept
+        Main Idea of the game and proposed goals, either completion, side events or goals.
+        Characters
+        Enemies
+        General Descriptors
+
+    Mechanics/UI
+        What actions are allowed/not allowed.
+        What purpose the actors take.
+        How will it be presented visually.
+
+    Platforms
+        What will the game be available for?
+            Desktop? [ ]
+            Mobile? [ ]
+            Console? [ ]
+            Browser-based? [ ]
+
+    Assets
+        What imagery or other document types necessary for the completion of game being crafted?
+        What tools are necessary to play and/or create/publish game?
+        Music?
+        Images?
+        Style?
+        Sprites needed?
